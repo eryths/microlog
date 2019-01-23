@@ -2,16 +2,13 @@ package web
 
 import (
 	"fmt"
-	"html/template"
+	"microlog/web/actions"
 	"net/http"
 )
 
 func Start() {
-	tmpl := template.Must(template.ParseFiles("web/tpl/users.html"))
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl.Execute(w, nil)
-	})
+	http.HandleFunc("/", actions.Home)
 
 	// static
 	http.Handle("/static/", http.StripPrefix(
